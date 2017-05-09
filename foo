@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#
+# download and display commandlinefu entries by pagea maintains state across
+# invokations using a "start" file the start file contains start add of next
+# page to request when this script was written there are about ~12400 entries
+# in commandlinefu.com, this script downloads a page a day, so we can read
+# about 25 commands each day to improve our knowledge of unix/linux command
+# line utilities.
+#
+
+#set -x
+
+start=$1
+
+if [ -z $start ]; then
+  if [ -f ./start ]; then
+    start=$(cat ./start)
+  else
+    start=0
+  fi
+fi
+
+step=25
+end=$(($start + $step))
+page=$start
+
+while [ $page -lt $end ]; do
+    curl -s -o command-line-fu-$page.txt "http://www.commandlinefu.com/commands/browse/sort-by-votes/plaintext/$page";
+    page=$(($page + $step))
+done
+
+echo "Downloaded todays command-line-fu page. Start reading at command-line-fu-$start.txt"
+
+echo $end > start
+
+
