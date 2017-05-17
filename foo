@@ -1,10 +1,13 @@
 #!/bin/bash
 
 #
-# download and display commandlinefu entries by pagea maintains state across
-# invokations using a "start" file the start file contains start add of next
-# page to request when this script was written there are about ~12400 entries
-# in commandlinefu.com, this script downloads a page a day, so we can read
+# Download commandlinefu.com entries by page count
+#
+# Maintains state across invokations using a "start" file.  The start file
+# contains the number of next page to request.  When this script was written
+# there were about ~12400 entries in commandlinefu.com.
+#
+# Use this script to download one or more pages per execution, so we can read
 # about 25 commands each day to improve our knowledge of unix/linux command
 # line utilities.
 #
